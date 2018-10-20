@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title>Yang-CRM- 登录</title>
+
+    <link href="__CSS__/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+
+    <link href="__CSS__/animate.css" rel="stylesheet">
+    <link href="__CSS__/style.css?v=2.2.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="middle-box text-center loginscreen  animated fadeInDown"   >
+    <div>
+        <h3>Yang-CRM 后台登录</h3>
+
+        <form class="m-t" role="form"  method="POST" action="login/check_login">
+            <div class="form-group">
+                <input type="text" class="form-control"  placeholder="账号" required="" name="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="密码" required="" name="password">
+            </div>
+            <div class="form-group">
+
+                <input class="form-control" style="width:145px;float:left;" name="code" type="text" placeholder="验证码" >
+
+                <img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}?'+Math.random();" width="150" style="float: right; cursor:pointer;" alt="captcha" />
+
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" id="submit">登 录</button>
+            <p class="text-muted text-center">没有业务账号？<a href="register.html"> [快速注册]</a>
+            </p>
+
+        </form>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/bootstrap.min.js?v=3.4.0"></script>
+</body>
+
+</html>

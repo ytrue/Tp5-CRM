@@ -1,0 +1,466 @@
+{include file='layout/header'}
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>职位部门 <small>分类，查找</small></h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="table_data_tables.html#">选项1</a>
+                    </li>
+                    <li><a href="table_data_tables.html#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <!--成功-->
+            <div class="modal " tabindex="-1"  id="ok" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 180px;">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                             <img src="__IMG__/loading.gif" alt="" style="margin-left: -20px;" id="ok-img" > <span id="ok-text">&nbsp;&nbsp;数据交互中...</span>
+                        </div>
+                        <!-- 注脚 -->
+
+                    </div>
+                </div>
+            </div>
+			
+            <!--add-->
+            <div class="modal  " tabindex="-1"  id="myModal" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建面板</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职位名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入职位名称" name="name" id="name" >
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submit" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			
+			 <!--edit-->
+            <div class="modal" tabindex="-1"  id="myModals" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 编辑面板</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职位名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入职位名称" name="name" id="names" >
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submits" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+			
+
+
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="edit"> <span class="glyphicon glyphicon-pencil"></span> 编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="delete"> <span class="glyphicon glyphicon-trash"></span>  删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <button  name="all" id="checkboxAll"  class="btn btn-primary btn-sm" type="button"><i class="fa fa-check"></i>&nbsp;全选</button>
+                            <button  name="no"  id="checkedNo" class="btn btn-danger btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i>&nbsp;全不选</button>
+                            <button  name="reverse"id="checkedRev"  class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-random"></i>&nbsp;反选</button>
+                            <a  href="" class="btn btn-warning  btn-sm "><i class="glyphicon glyphicon-refresh"></i>  重置 / 刷新</a>
+                            <p></p>
+
+                            <!--bootstrap-->
+
+                                <div role="form" class=" form-group-sm"  style="width: 650px;"  >
+                                    <label>关键字&nbsp;&nbsp;</label>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2" class="sr-only" >用户名</label>
+                                        <input type="text" placeholder="职位" id="exampleInputEmail2" class="form-control" name="name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group" id="data_5">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" value="{:date('Y-m-d')}"  readonly style="background: white"  id="start" />
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text" class="input-sm form-control" name="end" value="{:date('Y-m-d',time()+86400)}" readonly  style="background: white"  id="end" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-white btn-sm" id="select">查询</button>
+                                </div>
+                            <br>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+
+                <thead >
+                <tr role="row">
+                    <th class="sorting_asc_disabled" tabindex="0" aria-controls="DataTables_Table_0"  style="width: 30px;">
+                        <div class="text-center">
+                            <input type="checkbox" disabled >
+                        </div>
+
+                    </th>
+                    <th class="sorting_asc_disabled text-center" tabindex="0" >职位名称</th>
+                    <th class="sorting_asc_disabled text-center"  >创建时间</th>
+                </thead>
+                <tbody id="ok-create">
+                {volist name='data' id='post'}
+                <tr class="gradeA odd {$post.id} select-remove">
+                    <td class="sorting_1">
+                        <div class="text-center">
+                            <input type="checkbox" name="check[]"  yang="yang"  value="{$post.id}" >
+                        </div>
+                    </td>
+                    <td class="text-center ">{$post.name}</td>
+                    <td class="text-center">{$post.create_time}</td>
+                </tr>
+                {/volist}
+            </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_info" id="DataTables_Table_0_info" role="alert" aria-live="polite" aria-relevant="all">显示 1 到 10 项，共 {$count} 项数据</div>
+                        <div class="text-right" id="page">
+                            {$data->render()}
+                        </div>
+                    </div>
+
+                </div>
+
+
+</div>
+<!--jquery 全选，不全选，反选...-->
+<script>
+
+    $(function() {  //prop和attr方法都是设置或者修改被选元素的属性，
+        // prop方法用于HTML元素本身就带有的固有属性，
+        // attr方法用于HTML元素自己定义的dom属性，
+
+        $("#checkedAll").click(function() {
+
+            if (this.checked) {
+
+                $("[yang=yang]:checkbox").prop("checked", true);
+            }else {
+
+                $("[yang=yang]:checkbox").prop("checked", false);
+            }
+        });
+
+        $("#checkboxAll").click(function() {
+
+            $("[yang=yang]:checkbox").prop("checked", true);
+        });
+
+        $("#checkedNo").click(function() {
+
+            $("[yang=yang]:checkbox").prop("checked", false);
+        });
+
+        $("#checkedRev").click(function() {
+
+            $("[yang=yang]:checkbox").each(function() {
+                console.log(this.checked);
+                this.checked = !this.checked//this指当前的html对象
+            });
+        });
+
+        $("#submit").click(function() {
+
+            var str = "你喜欢的是："
+            $("[yang=yang]:checkbox:checked").each(function() {
+
+                str += $(this).val() + "||";//这里$(this)指的是jquery对象
+            })
+
+            console.log(str);
+        });
+    })
+
+</script>
+<script>
+    //add
+    $('#submit').click(function () {
+            $.ajax({
+                type:'POST',
+                url:'post',
+                data:{
+                    name:$('#name').val(),
+                },
+
+                beforeSend:function(){
+                    $('#myModal').modal('hide');
+                    $('#ok').modal('show');
+                },
+                success:function(response,stutas,xhr){
+
+                   if(response>0){
+                       $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                       $('#ok-text').html('数据添加成功');
+                       $('#ok-create').prepend('<tr  class="gradeA odd select-remove  '+ response +' ">\n' +
+                           '                    <td class="sorting_1"><div class="text-center"><input   type="checkbox" yang="yang" name="check[]" value="'+ response+'"></div></td>\n' +
+                           '                    <td class="text-center" id="y"></td>\n' +
+                           '                    <td class="text-center">{:date("Y-m-d H:i:s")}</td>\n' +
+                           '                </tr>');
+                       $('#y').html($('#name').val());
+                       //$('#tmp').val(response);
+                      // $('#tmp_class').addClass(response);
+                       setTimeout(function () {
+                           $('#ok').modal('hide');
+                           $('#ok-img').attr('src','/__IMG__/loading.gif');
+                           $('#ok-text').html('数据交互中..,');
+                       },1000)
+
+
+                  }else {
+                       $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                       $('#ok-text').html(response['msg']);
+                       setTimeout(function () {
+                           $('#ok').modal('hide');
+                           $('#ok-img').attr('src','/__IMG__/loading.gif');
+                           $('#ok-text').html('数据交互中..,');
+                       },1000)
+                  }
+                }
+
+            });
+    });
+    //delete
+        $("#delete").click(function(){
+            if ($("[yang=yang]:checkbox:checked").length>0){
+                var delete_id=[];
+                var i=0;
+                $.each($("[yang=yang]:checkbox:checked"),function(){
+                    if(this.checked){
+                        delete_id[i]=$(this).val();
+                        i++;
+                    }
+                });
+                var num=JSON.stringify((delete_id));
+                $.ajax({
+                    type:'DELETE',
+                    url:'post/delete',
+                    data:{
+                        id:num,
+                    },
+                    beforeSend:function(){
+                        $('#ok').modal('show');
+                    },
+                    success:function (response,stutas,xhr) {
+                        if(response==true){
+                            $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                            $('#ok-text').html('数据删除成功');
+                            // for (var i=0; i<delete_id.length; i++){
+                            //     var j='.'+delete_id[i];
+                            //     $(j).hide();
+                            // }
+                            $("[yang=yang]:checkbox:checked").parent().parent().parent().hide();
+                            setTimeout(function () {
+								$("[yang=yang]:checkbox:checked").attr('checked',false);
+                                $('#ok').modal('hide');
+                                $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                $('#ok-text').html('数据交互中..,');
+                            },1000)
+                        }
+
+                    }
+                })
+            }else {
+                alert('至少有一个选中');
+            }
+        });
+  //edit
+  $('#edit').click(function(){
+
+	 	if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+			alert('至少有一个被选中，且只能选中一个');
+		}else{
+            var ids=$("[yang=yang]:checkbox:checked").val();
+            $.ajax({
+                type:'GET',
+                url:'post/'+ids+'/edit',
+                data:{
+                    id:ids
+                },
+                beforeSend:function(){
+                    $('#ok').modal('show');
+                },
+                success:function (response,stutas,xhr) {
+                    $('#names').val(response['name']);
+                    $('#myModals').modal('show');
+                    setTimeout(function () {
+                        $('#ok').modal('hide');
+                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                        $('#ok-text').html('数据交互中..,');
+                    },1)
+                }
+            })
+
+		}
+
+      //update
+      $('#submits').click(function(){
+           $.ajax({
+               type:'PUT',
+               url:'post/update',
+               data:{
+                   name:$('#names').val(),
+                   id:ids
+               },
+               beforeSend:function(){
+                   $('#myModals').modal('hide');
+                   $('#ok').modal('show');
+               },
+               success:function (response,stutas,xhr){
+                  if (response==true){
+                      $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                      $('#ok-text').html('数据修改成功');
+                      $("[yang=yang]:checkbox:checked").parent().parent().next().text($('#names').val());
+
+                      setTimeout(function () {
+                          $('#ok').modal('hide');
+                          $('#ok-img').attr('src','/__IMG__/loading.gif');
+                          $('#ok-text').html('数据交互中..,');
+                      },1000)
+
+                  }else {
+                      $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                      $('#ok-text').html(response['msg']);
+                      setTimeout(function () {
+                          $('#ok').modal('hide');
+                          $('#ok-img').attr('src','/__IMG__/loading.gif');
+                          $('#ok-text').html('数据交互中..,');
+                      },1000)
+                  }
+               },
+
+
+           })
+      });
+
+  });
+  
+  //select
+    $('#select').click(function () {
+
+        var name=$('#exampleInputEmail2').val();
+        var start=$('#start').val();
+        var end=$('#end').val();
+
+        if (name.length==0){
+            alert('职位名称不得为空');
+        }else {
+            $.ajax({
+                type: 'GET',
+                url: 'post',
+                data: {
+                    'name': name,
+                    'start': start,
+                    'end': end
+                },
+                beforeSend: function () {
+                    $('#ok').modal('show');
+                },
+                success: function (r, s, x) {
+                    if (r['data'].length != 0) {
+                        $('.select-remove').remove();
+                        var data = r['data'];
+                        for (var i = 0; i < r['data'].length; i++) {
+                            $('#page').hide();
+                            $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                            $('#ok-text').html('数据查询成功');
+                            //  alert(r['data'][i]['id']+r['data'][i]['name']+r['data'][i]['create_time']);
+                            $('#ok-create').prepend('<tr class="gradeA odd  ' + r['data'][i]['id'] + '  select-remove">\n' +
+                                '                    <td class="sorting_1">\n' +
+                                '                        <div class="text-center">\n' +
+                                '                            <input type="checkbox" name="check[]"  yang="yang"  value=" ' + r['data'][i]['id'] + ' ">\n' +
+                                '                        </div>\n' +
+                                '                    </td>\n' +
+                                '                    <td class="text-center"" >' + r['data'][i]['name'] + '</td>\n' +
+                                '                    <td class="text-center" "> ' + r['data'][i]['create_time'] + ' </td>\n' +
+                                '                </tr>');
+
+                            setTimeout(function () {
+                                $('#ok').modal('hide');
+                                $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                $('#ok-text').html('数据交互中..,');
+                            }, 1000)
+
+                        }
+                    } else {
+                        $('.select-remove').remove();
+                        $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                        $('#ok-text').html('查询数据为空');
+                        setTimeout(function () {
+                            $('#ok').modal('hide');
+                            $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                            $('#ok-text').html('数据交互中..,');
+                        }, 1000)
+                    }
+
+                }
+
+            });
+        }
+
+    });
+</script>
+
+
+{include file='layout/footer'}

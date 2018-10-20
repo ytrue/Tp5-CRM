@@ -1,0 +1,1062 @@
+{include file='layout/header'}
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>员工档案 </h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="table_data_tables.html#">选项1</a>
+                    </li>
+                    <li><a href="table_data_tables.html#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <!--成功-->
+            <div class="modal " tabindex="-1"  id="ok" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 180px;">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <img src="__IMG__/loading.gif" alt="" style="margin-left: -20px;" id="ok-img" > <span id="ok-text">&nbsp;&nbsp;数据交互中...</span>
+                        </div>
+                        <!-- 注脚 -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!--add-->
+            <div class="modal" tabindex="-1"  id="myModal" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 900px; ">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建档案</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body" style="overflow: auto; height: 600px;">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">姓名</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入姓名" name="name" id="name" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">性别</label>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="inlineRadio1" value="男" name="gender"  checked  >
+                                        <label for="inlineRadio1">男</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="inlineRadio2" value="女" name="gender">
+                                        <label for="inlineRadio2"> 女</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">工号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入工号" name="number" id="number" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职位</label>
+                                    <div class="col-sm-10">
+                                    <select class=" form-control " id="post" >
+                                        <option value=""></option>
+                                        {volist name='post' id='value'}
+                                        <option  value="{$value.name}" >{$value.name}</option>
+                                        {/volist}
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">身份证</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入身份证" name="id_card" id="id_card" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">员工类型</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="type" >
+                                            <option value=""></option>
+                                            <option  value="正式员工" >正式员工</option>
+                                            <option  value="临时员工" >临时员工</option>
+                                            <option  value="合同员工" >合同员工</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">移动电话</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入身份证" name="tel" id="tel" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">婚姻状况</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="marital_status" >
+                                            <option value=""></option>
+                                            <option  value="未婚" >未婚</option>
+                                            <option  value="已婚" >已婚</option>
+                                            <option  value="离异" >离异</option>
+                                            <option  value="丧偶" >丧偶</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">民族</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="nation" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">入职时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                    <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control date-picker" value="{:date('Y-m-d')}"  id="entry-date"    >
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">离职时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                        <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input type="text" class="form-control " value="{:date('Y-m-d')}"  id="dimission-date"    >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">学历</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="education" >
+                                            <option value="无">无</option>
+                                            <option  value="中专" >中专</option>
+                                            <option  value="大专" >大专</option>
+                                            <option  value="本科" >本科</option>
+                                            <option  value="硕士" >硕士</option>
+                                            <option  value="博士" >博士</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">入职状态</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="entry_status" >
+                                            <option value=""></option>
+                                            <option  value="在职" >在职</option>
+                                            <option  value="离职" >离职</option>
+                                            <option  value="调休" >调休</option>
+                                            <option  value="退休" >退休</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">专业</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="specialty" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">政治面貌</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="politics_statu" >
+                                            <option  value="" ></option>
+                                            <option  value="群众" >群众</option>
+                                            <option  value="团员" >团员</option>
+                                            <option  value="党员" >党员</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">健康状态</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="health" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                <label class="col-sm-2 control-label">户口类型</label>
+                                <div class="col-sm-10">
+                                    <select class=" form-control " id="registered" >
+                                        <option value=""></option>
+                                        <option  value="本地城市户口" >本地城市户口</option>
+                                        <option  value="本地农村户口" >本地农村户口</option>
+                                        <option  value="外地户口" >外地户口</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">户口所在地</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="registered_address" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">毕业时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                        <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input type="text" class="form-control " value="{:date('Y-m-d')}"  id="graduate_date"    >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">毕业学校</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="graduate_college"    >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">个人简介</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="intro" id="intro" style="height: 200px;" placeholder="255字内简单介绍一下自己！"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">详情</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%; " rows="10"></textarea>      </div>
+                                    </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submit" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--edit-->
+            <div class="modal" tabindex="-1"  id="myModals" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 900px; ">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建档案</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body" style="overflow: auto; height: 600px;">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">姓名</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入姓名" name="name" id="names" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">性别</label>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="inlineRadio1s" value="男" name="genders"  checked  >
+                                        <label for="inlineRadio1">男</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="inlineRadio2s" value="女" name="genders">
+                                        <label for="inlineRadio2"> 女</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">工号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入工号" name="number" id="numbers" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">职位</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="posts" >
+                                            <option value=""></option>
+                                            {volist name='post' id='value'}
+                                            <option  value="{$value.name}" >{$value.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">身份证</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入身份证" name="id_card" id="id_cards" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">员工类型</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="types" >
+                                            <option value=""></option>
+                                            <option  value="正式员工" >正式员工</option>
+                                            <option  value="临时员工" >临时员工</option>
+                                            <option  value="合同员工" >合同员工</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">移动电话</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入身份证" name="tel" id="tels" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">婚姻状况</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="marital_statuss" >
+                                            <option value=""></option>
+                                            <option  value="未婚" >未婚</option>
+                                            <option  value="已婚" >已婚</option>
+                                            <option  value="离异" >离异</option>
+                                            <option  value="丧偶" >丧偶</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">民族</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="nations" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">入职时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                        <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input type="text" class="form-control date-picker"    id="entry-dates"    >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">离职时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                        <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input type="text" class="form-control "    id="dimission-dates"    >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">学历</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="educations" >
+                                            <option value="无">无</option>
+                                            <option  value="中专" >中专</option>
+                                            <option  value="大专" >大专</option>
+                                            <option  value="本科" >本科</option>
+                                            <option  value="硕士" >硕士</option>
+                                            <option  value="博士" >博士</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">入职状态</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="entry_statuss" >
+                                            <option value=""></option>
+                                            <option  value="在职" >在职</option>
+                                            <option  value="离职" >离职</option>
+                                            <option  value="调休" >调休</option>
+                                            <option  value="退休" >退休</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">专业</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="specialtys" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">政治面貌</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="politics_status" >
+                                            <option  value="" ></option>
+                                            <option  value="群众" >群众</option>
+                                            <option  value="团员" >团员</option>
+                                            <option  value="党员" >党员</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">健康状态</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="healths" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">户口类型</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="registereds" >
+                                            <option value=""></option>
+                                            <option  value="本地城市户口" >本地城市户口</option>
+                                            <option  value="本地农村户口" >本地农村户口</option>
+                                            <option  value="外地户口" >外地户口</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">户口所在地</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="registered_addresss" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="data_1">
+                                    <label class="control-label col-sm-2">毕业时间</label>
+                                    <div class="col-sm-10" style="z-index: 9999">
+                                        <div class="input-group date" >
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                            <input type="text" class="form-control " value="{:date('Y-m-d')}"  id="graduate_dates"    >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">毕业学校</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " id="graduate_colleges"    >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">个人简介</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="intro" id="intros" style="height: 200px;" placeholder="255字内简单介绍一下自己！"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">详情</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="contents" class="common-textarea" id="contents" cols="30" style="width: 98%; " rows="10"></textarea>      </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submits" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--list-->
+            <div class="modal" tabindex="-1"  id="myModalss" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 员工档案详情</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <table class="table table-hover table-bordered text-center">
+                                <tr>
+                                <th colspan="5" align="left"> 员工档案详情</th>
+                            </tr>
+                                <tr>
+                                    <td width="15%">姓名：</td>
+                                    <td width="80%"  id="details_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>性别：</td>
+                                    <td id="details_gender"></td>
+                                </tr>
+                                <tr>
+                                    <td>工号：</td>
+                                    <td id="details_number"></td>
+                                </tr>
+                                <tr>
+                                    <td>职位：</td>
+                                    <td id="details_post"></td>
+                                </tr>
+                                <tr>
+                                    <td>关联账号：</td>
+                                    <td id="details_accounts"></td>
+                                </tr>
+                                <tr>
+                                    <td>状态：</td>
+                                    <td id="details_state"></td>
+                                </tr>
+                                <tr>
+                                    <td>个人简介：</td>
+                                    <td id="details_intro"></td>
+                                </tr>
+                                <tr>
+                                    <td>详情：</td>
+                                    <td id="details_details"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">关闭</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="edit"> <span class="glyphicon glyphicon-pencil"></span> 编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="delete"> <span class="glyphicon glyphicon-trash"></span>  删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <button  name="all" id="checkboxAll"  class="btn btn-primary btn-sm" type="button"><i class="fa fa-check"></i>&nbsp;全选</button>
+                            <button  name="no"  id="checkedNo" class="btn btn-danger btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i>&nbsp;全不选</button>
+                            <button  name="reverse"id="checkedRev"  class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-random"></i>&nbsp;反选</button>
+                            <a  href="" class="btn btn-warning  btn-sm "><i class="glyphicon glyphicon-refresh"></i>  重置 / 刷新</a>
+                            <p></p>
+
+                            <!--bootstrap-->
+
+                            <div role="form" class=" form-group-sm"  style="width: 1500px;"  >
+                                <label>关键字：&nbsp;&nbsp;</label>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail2" class="sr-only" >用户名</label>
+                                    <input type="text" placeholder="暂时" id="exampleInputEmail2" class="form-control" name="name" >
+                                </div>
+
+                                <button class="btn btn-white btn-sm" id="select">查询</button>
+                            </div>
+                            <br>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+
+                    <thead >
+                    <tr role="row">
+                        <th class="sorting_asc_disabled" tabindex="0" aria-controls="DataTables_Table_0"  style="width: 30px;">
+                            <div class="text-center">
+                                <input type="checkbox" disabled >
+                            </div>
+
+                        </th>
+                        <th class="sorting_asc_disabled text-center" tabindex="0" >工号</th>
+                        <th class="sorting_asc_disabled text-center"  >姓名</th>
+                        <th class="sorting_asc_disabled text-center"  >性别</th>
+                        <th class="sorting_asc_disabled text-center"  >身份证</th>
+                        <th class="sorting_asc_disabled text-center"  >职位</th>
+                        <th class="sorting_asc_disabled text-center"  >民族</th>
+                        <th class="sorting_asc_disabled text-center"  >员工类型</th>
+                        <th class="sorting_asc_disabled text-center"  >移动电话</th>
+                        <th class="sorting_asc_disabled text-center"  >入职状态</th>
+                        <th class="sorting_asc_disabled text-center"  >入职时间</th>
+                        <th class="sorting_asc_disabled text-center"  >婚姻状态</th>
+                        <th class="sorting_asc_disabled text-center"  >学历</th>
+                        <th class="sorting_asc_disabled text-center"  >详情</th>
+
+                    </thead>
+                    <tbody id="ok-create">
+
+                    {volist name='data' id='value' }
+                    <tr class="gradeA odd {$value.id}  select-remove">
+                        <td class="sorting_1">
+                            <div class="text-center">
+                                <input type="checkbox" name="check[]"  yang="yang"  value="{$value.id}" >
+                            </div>
+                        </td>
+                        <td class="text-center  ">{$value.number}</td>
+                        <td class="text-center">{$value.name}</td>
+                        <td class="text-center ">{$value.gender}</td>
+                        <td class="text-center">{$value.id_card}</td>
+                        <td class="text-center ">{$value.post}</td>
+                        <td class="text-center">{$value.nation}</td>
+                        <td class="text-center ">{$value.type}</td>
+                        <td class="text-center">{$value.tel}</td>
+                        <td class="text-center ">{$value.entry_status}</td>
+                        <td class="text-center">{$value.entry_date}</td>
+                        <td class="text-center ">{$value.marital_status}</td>
+                        <td class="text-center">{$value.education}</td>
+                        <td class="text-center">
+                            <a class="details"   details_id="{$value.id}"><i class="fa fa-file-text-o"></i>  </a>
+                        </td>
+                    </tr>
+                    {/volist}
+                </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-right" id="page">
+                                {$data->render()}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--jquery 全选，不全选，反选...-->
+            <script>
+
+                $("#ok-create").on('click','.details',function () {
+                    $.ajax({
+                        type:"POST",
+                        url:'staff/details',
+                        data:{
+                            id:$(this).attr('details_id'),
+                        },
+                        beforeSend:function(){
+                            $('#ok').modal('show');
+                        },
+                        success:function (r,s,x) {
+                            $("#details_name").html(r['name']);
+                            $("#details_number").html(r['number']);
+                            $("#details_gender").html(r["gender"]);
+                            $("#details_post").html(r["post"]);
+                            $("#details_state").html(r["state"]);
+                            $('#details_intro').html(r['intro']);
+                            $("#details_details").html(r['details']);
+                            $("#details_accounts").html(r['accounts']);
+                            setTimeout(function () {
+                                $('#myModalss').modal('show');
+                                $('#ok').modal('hide');
+                                $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                $('#ok-text').html('数据交互中..,');
+                            }, 1000)
+                        }
+
+
+                    });
+                });
+
+
+
+
+                $(function() {  //prop和attr方法都是设置或者修改被选元素的属性，
+                    // prop方法用于HTML元素本身就带有的固有属性，
+                    // attr方法用于HTML元素自己定义的dom属性，
+
+                    $("#checkedAll").click(function() {
+
+                        if (this.checked) {
+
+                            $("[yang=yang]:checkbox").prop("checked", true);
+                        }else {
+
+                            $("[yang=yang]:checkbox").prop("checked", false);
+                        }
+                    });
+
+                    $("#checkboxAll").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", true);
+                    });
+
+                    $("#checkedNo").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", false);
+                    });
+
+                    $("#checkedRev").click(function() {
+
+                        $("[yang=yang]:checkbox").each(function() {
+                            console.log(this.checked);
+                            this.checked = !this.checked//this指当前的html对象
+                        });
+                    });
+
+                    $("#submit").click(function() {
+
+                        var str = "你喜欢的是："
+                        $("[yang=yang]:checkbox:checked").each(function() {
+
+                            str += $(this).val() + "||";//这里$(this)指的是jquery对象
+                        })
+
+                        console.log(str);
+                    });
+                })
+                UE.getEditor('content',{initialFrameWidth:680,initialFrameHeight:400,});
+                UE.getEditor('contents',{initialFrameWidth:680,initialFrameHeight:400,});
+
+               $('#submit').click(function () {
+                    $.ajax({
+                        url:'staff',
+                        type:'POST',
+                        data:{
+                            name:$('#name').val(), //姓名
+                           gender:$('[name=gender]:radio:checked').val(),  //性别
+                           number:$('#number').val(),  //工号
+                             type:$('#type option:selected').val(),
+                           post:$('#post option:selected').val(),  //职位
+                           id_card:$('#id_card').val(),  //身份证
+                           tel:$('#tel').val(),  //电话号码
+                           marital_status:$('#marital_status option:selected').val(),  //婚姻状态
+                           nation:$('#nation').val(),  //民族
+                           entry_date:$('#entry-date').val(),   //在职时间
+                           dimission_date:$('#dimission-date').val(),  //离职时间
+                           education:$('#education option:selected').val(),   //学历
+                           entry_status:$('#entry_status option:selected').val(),  //入职状态
+                           specialty:$('#specialty').val(),  //专业
+                           health:$('#health').val(),  //健康
+                           registered:$('#registered option:selected').val(),  //户口
+                           registered_address:$('#registered_address').val(),  //户口所在地
+                           graduate_date:$('#graduate_date').val(),
+                           graduate_college:$('#graduate_college').val(),
+                           intro:$('#intro').val(),
+                           datails:UE.getEditor('content').getContent(),
+                            politics_statu:$('#politics_statu option:selected').val()
+                        },
+                        beforeSend:function(){
+                            $('#myModal').modal('hide');
+                            $('#ok').modal('show');
+                        },
+                        success:function (r,s,x) {
+                            if (r > 0) {
+                                $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                $('#ok-text').html('数据添加成功');
+                                $('#ok-create').prepend('<tr class="gradeA odd  '+ r +'  select-remove">\n' +
+                                    '                        <td class="sorting_1">\n' +
+                                    '                            <div class="text-center">\n' +
+                                    '                                <input type="checkbox" name="check[]"  yang="yang"  value=" '+r+' " >\n' +
+                                    '                            </div>\n' +
+                                    '                        </td>\n' +
+                                    '                        <td class="text-center ">'+$('#number').val()+'</td>\n' +
+                                    '                        <td class="text-center">'+$('#name').val()+'</td>\n' +
+                                    '                        <td class="text-center ">'+ $('[name=gender]:radio:checked').val() +' </td>\n' +
+                                    '                        <td class="text-center">'+ $('#id_card').val() +'</td>\n' +
+                                    '                        <td class="text-center ">'+ $('#post option:selected').val() +'</td>\n' +
+                                    '                        <td class="text-center">'+$('#nation').val()+'</td>\n' +
+                                    '                        <td class="text-center ">'+ $('#type option:selected').val() +'</td>\n' +
+                                    '                        <td class="text-center">'+$('#tel').val()+'</td>\n' +
+                                    '                        <td class="text-center ">'+ $('#entry_status option:selected').val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $('#entry-date').val() +'</td>\n' +
+                                    '                        <td class="text-center ">'+ $('#marital_status option:selected').val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $('#education option:selected').val() +'</td>\n' +
+                                    '                        <td class="text-center">\n' +
+                                    '                            <a  class="details"   details_id=" '+ r +' "><i class="fa fa-file-text-o"></i>  </a>\n' +
+                                    '                        </td>\n' +
+                                    '                    </tr>');
+
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                }, 1000)
+
+                            }else{
+                                $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                $('#ok-text').html(response['msg']);
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1000)
+                            }
+                        }
+                    })
+               })
+
+                //delete
+                $("#delete").click(function(){
+                    if ($("[yang=yang]:checkbox:checked").length>0){
+                        var delete_id=[];
+                        var i=0;
+                        $.each($("[yang=yang]:checkbox:checked"),function(){
+                            if(this.checked){
+                                delete_id[i]=$(this).val();
+                                i++;
+                            }
+                        });
+                        var num=JSON.stringify((delete_id));
+                        $.ajax({
+                            type:'DELETE',
+                            url:'staff/delete',
+                            data:{
+                                id:num,
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                if(response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据删除成功');
+                                    // for (var i=0; i<delete_id.length; i++){
+                                    //     var j='.'+delete_id[i];
+                                    //     $(j).hide();
+                                    // }
+                                    $("[yang=yang]:checkbox:checked").parent().parent().parent().hide();
+                                    setTimeout(function () {
+                                        $("[yang=yang]:checkbox:checked").attr('checked',false);
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+
+                            }
+                        })
+                    }else {
+                        alert('至少有一个选中');
+                    }
+                });
+
+                //edit
+                $('#edit').click(function(){
+
+                    if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+                        alert('至少有一个被选中，且只能选中一个');
+                    }else{
+                        var ids=$("[yang=yang]:checkbox:checked").val();
+                        $.ajax({
+                            type:'GET',
+                            url:'staff/'+ids+'/edit',
+                            data:{
+                                id:ids
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                $('#ok').modal('hide');
+                                $('#numbers').val(response['number']);  //工号
+                                $('#names').val(response['name']);  // 姓名
+                                if (response['gender']=='男'){     //性别
+                                    $('#inlineRadio1s')[0].checked = true
+                                    $('#inlineRadio2s').removeAttr("checked");
+                                } else {
+                                    $('#inlineRadio2s')[0].checked = true
+                                    $('#inlineRadio1s').removeAttr("checked");
+                                }
+                                $('#id_cards').val(response['id_card'])  //身份证
+                                $('#tels').val(response['tel']);  // 电话
+                                $('#nations').val(response['nation'])  //民族
+                                $('#entry-dates').val(response['entry_date']),   //在职时间
+                                $('#dimission-dates').val(response['dimission_date']),  //离职时间
+                                $('#specialtys').val(response['specialty']),  //专业
+                                $('#healths').val(response['health']),  //健康
+                                $('#registered_addresss').val(response['registered_address']);  //户口所在地
+                                $('#intros').val(response['intro']);
+                                $('#graduate_colleges').val(response['graduate_college']);
+                                UE.getEditor('contents').setContent(response['datails'])
+
+                                for (var j=1; j< $('#types option').length; j++){
+                                    if ( $("#types option:eq(' "+ j +" ')").val()==response['type']){    //员工类型
+                                        $("#types option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+                                for (var j=1; j< $('#posts option').length; j++){
+                                    if ( $("#posts option:eq(' "+ j +" ')").val()==response['post']){    //职位
+                                        $("#posts option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+                                for (var j=1; j< $('#marital_statuss option').length; j++){
+                                    if ( $("#marital_statuss option:eq(' "+ j +" ')").val()==response['marital_status']){    //婚姻状态
+                                        $("#marital_statuss option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+                                for (var j=1; j< $('#educations option').length; j++){
+                                    if ( $("#educations option:eq(' "+ j +" ')").val()==response['education']){    //学历
+                                        $("#educations option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+                                for (var j=1; j< $('#entry_statuss option').length; j++){
+                                    if ( $("#entry_statuss option:eq(' "+ j +" ')").val()==response['entry_status']){    //入职状态
+                                        $("#entry_statuss option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+                                for (var j=1; j< $('#politics_status option').length; j++){
+                                    if ( $("#politics_status option:eq(' "+ j +" ')").val()==response['politics_statu']){    //政治面貌
+                                        $("#politics_status option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+                                for (var j=1; j< $('#registereds option').length; j++){
+                                    if ( $("#registereds option:eq(' "+ j +" ')").val()==response['registered']){    //政治面貌
+                                        $("#registereds option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+                                // $('#passwords').val(response['password']);
+                                $('#myModals').modal('show');
+                                setTimeout(function () {
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1)
+                            }
+                        })
+
+                    }
+                    //update
+                    $('#submits').click(function(){
+                        $.ajax({
+                            type:'PUT',
+                            url:'staff/update',
+                            data:{
+                                id:ids,
+                                name:$('#names').val(), //姓名
+                                gender:$('[name=genders]:radio:checked').val(),  //性别
+                                number:$('#numbers').val(),  //工号
+                                type:$('#types option:selected').val(),
+                                post:$('#posts option:selected').val(),  //职位
+                                id_card:$('#id_cards').val(),  //身份证
+                                tel:$('#tels').val(),  //电话号码
+                                marital_status:$('#marital_statuss option:selected').val(),  //婚姻状态
+                                nation:$('#nations').val(),  //民族
+                                entry_date:$('#entry-dates').val(),   //在职时间
+                                dimission_date:$('#dimission-dates').val(),  //离职时间
+                                education:$('#educations option:selected').val(),   //学历
+                                entry_status:$('#entry_statuss option:selected').val(),  //入职状态
+                                specialty:$('#specialtys').val(),  //专业
+                                health:$('#healths').val(),  //健康
+                                registered:$('#registereds option:selected').val(),  //户口
+                                registered_address:$('#registered_addresss').val(),  //户口所在地
+                                graduate_date:$('#graduate_dates').val(),
+                                graduate_college:$('#graduate_colleges').val(),
+                                intro:$('#intros').val(),
+                                datails:UE.getEditor('contents').getContent(),
+                                politics_statu:$('#politics_status option:selected').val()
+                            },
+                            beforeSend:function(){
+                                $('#myModals').modal('hide');
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr){
+                                if (response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据修改成功');
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().text($('#numbers').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().text($('#names').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().text($('[name=genders]:radio:checked').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().text($('#id_cards').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().text($('#posts option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().text($('#nations').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().text($('#types option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().text($('#tels').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().text($('#entry_statuss option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().next().text($('#entry-dates').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().next().next().text($('#marital_statuss option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().next().next().next().text($('#educations option:selected').val());
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }else {
+                                    $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                    $('#ok-text').html(response['msg']);
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+                            },
+
+
+                        })
+                    });
+
+                });
+            //select
+                $('#select').click(function () {
+                    var name=$('#exampleInputEmail2').val();
+                    var start=$('#start').val();
+                    var end=$('#end').val();
+                    var time_type=$('#time_type option:selected').val();
+
+                    if (name.length==0){
+                        alert('姓名|电话|工号 不得为空');
+                    }else {
+                        $.ajax({
+                            type: 'GET',
+                            url: 'user',
+                            data: {
+                                'name':name,
+                                'time_type':time_type,
+                                'start': start,
+                                'end': end
+                            }
+                        });
+                    }
+
+                });
+
+
+
+            </script>
+
+            {include file='layout/footer'}

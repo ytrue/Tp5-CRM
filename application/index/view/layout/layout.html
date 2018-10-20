@@ -1,0 +1,246 @@
+{include file='layout/header'}
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation" style=" overflow:auto " >
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+         <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span><img alt="image" class="img-circle" src="__IMG__/profile_small.jpg" /></span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                               <span class="block m-t-xs"><strong class="font-bold">{:session('name')}</strong></span>
+                                <span class="text-muted text-xs block">{:session('accounts')}<b class="caret"></b></span>
+                                </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+                            </li>
+                            <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                            </li>
+                            <li><a class="J_menuItem" href="contacts.html">联系我们</a>
+                            </li>
+                            <li><a class="J_menuItem" href="mailbox.html">信箱</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="logout">安全退出</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">H+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-folder-open"></i>
+                        <span class="nav-label">办公管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/index" data-index="0"><i class="fa fa-home">首页</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/work"><i class="fa fa-home">工作计划</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/allo"><i class="fa fa-home">分配任务</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/inform"><i class="fa fa-home">通知管理</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/letter"><i class="fa fa-home">私信收发</i></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--2-->
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span class="nav-label">客户管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/client"><i class="fa fa-home">客户信息</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/documentary"><i class="fa fa-home">跟单记录</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/order"><i class="fa fa-home">销售订单</i></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--3-->
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">仓库管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/product"><i class="fa fa-home">产品信息</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/inlib" ><i class="fa fa-home">入库记录</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/outlib"><i class="fa fa-home">出库记录</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/alarm"><i class="fa fa-home">库存警报</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/procure"><i class="fa fa-home">采购记录</i></a>
+                        </li>
+                    </ul>
+                </li>
+                <!--4-->
+                <li>
+                    <a href="#">
+                        <i class="fa fa-usd"></i>
+                        <span class="nav-label">财务管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/receipt"><i class="fa fa-home">收款记录</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/payment"><i class="fa fa-home">支出记录</i></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <!--5-->
+                <li>
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span class="nav-label">人事管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/user"><i class="fa fa-home">登录账号</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/staff"><i class="fa fa-home">员工档案</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/post"><i class="fa fa-home">职位部门</i></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <!--6-->
+                <li>
+                    <a href="#">
+                        <i class="fa fa-bar-chart"></i>
+                        <span class="nav-label">数据统计</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index_v2.html"><i class="fa fa-home">产品销量</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index_v3.html"><i class="fa fa-home">人员分布</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index_v3.html"><i class="fa fa-home">客户分析</i></a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!--7-->
+
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        <span class="nav-label">系统管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/log"><i class="fa fa-home">操作日志</i></a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-lock"></i>
+                        <span class="nav-label">权限管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="index.php/permission"><i class="fa fa-home">权限管理</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/role"><i class="fa fa-home">角色管理</i></a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="index.php/role_permission"><i class="fa fa-home">角色分配管理</i></a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;background: #000000;line-height: 40px;">
+                <p  class="text-center" style="color: #ffffff">Ynag-CRM</p>
+            </nav>
+        </div>
+        <div class="row content-tabs">
+            <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a href="javascript:;" class="active J_menuTab" data-id="index.php/index">首页</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+            </button>
+            <div class="btn-group roll-nav roll-right">
+                <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+                </button>
+                <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                    </li>
+                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+        </div>
+        <div class="row J_mainContent" id="content-main">
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index.php/index?v=4.0" frameborder="0" data-id="index.php/index" seamless></iframe>
+        </div>
+        <div class="footer ">
+            <div class="pull-right">&copy; 2014-2017 <a href="#" target="_blank">Yang-CRM</a>
+            </div>
+        </div>
+    </div>
+</div>
+{include file='layout/footer'}

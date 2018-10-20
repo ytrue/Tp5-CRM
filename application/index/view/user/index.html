@@ -1,0 +1,819 @@
+{include file='layout/header'}
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>登陆账号</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="table_data_tables.html#">选项1</a>
+                    </li>
+                    <li><a href="table_data_tables.html#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <!--成功-->
+            <div class="modal " tabindex="-1"  id="ok" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 180px;">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <img src="__IMG__/loading.gif" alt="" style="margin-left: -20px;" id="ok-img" > <span id="ok-text">&nbsp;&nbsp;数据交互中...</span>
+                        </div>
+                        <!-- 注脚 -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!--add-->
+            <div class="modal" tabindex="-1"  id="myModal" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建面板</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入账号" name="name" id="name" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入密码" name="name" id="password" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">状态</label>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="inlineRadio1" value="正常" name="state"  checked  >
+                                        <label for="inlineRadio1">正常</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="inlineRadio2" value="冻结" name="state">
+                                        <label for="inlineRadio2"> 冻结</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2  control-label">关联档案</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" data-toggle="dropdown" id="yy" yyy="" readonly>
+                                        <table class="table  tab-content table-bordered table-hover dropdown-menu" style="max-height: 500px;overflow: auto">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 5%">ID</th>
+                                                <th style="width: 15%">姓名</th>
+                                                <th style="width: 15%" >工号</th>
+                                                <th style="width: 10%">性别</th>
+                                                <th style="width: 35%">身份证</th>
+                                                <th style="width: 20%">职位</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="add_delete_ok">
+                                            {volist name='staff' id='value'}
+                                            <tr class="relation">
+                                                <td>{$value.id}</td>
+                                                <td >{$value.name}</td>
+                                                <td>{$value.number}</td>
+                                                <td>{$value.gender}</td>
+                                                <td>{$value.id_card}</td>
+                                                <td>{$value.post}</td>
+                                            </tr>
+                                            {/volist}
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submit" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--userRole-->
+            <!--add-->
+            <div class="modal" tabindex="-1"  id="myModalss" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 分配角色</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">账号名:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "   name="name" id="userRoles"  disabled  >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">选择角色:
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="role" >
+                                            <option value=""></option>
+                                            {volist name='role' id='value'}
+                                            <option value="{$value.id}">{$value.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submitss" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--edit-->
+            <div class="modal  " tabindex="-1"  id="myModals" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 编辑面板</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="请输入账号" name="name" id="names" readonly >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control " placeholder="密码留空则不修改" name="name" id="passwords" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">状态</label>
+                                    <div class="radio radio-info radio-inline">
+                                        <input type="radio" id="inlineRadio1s" value="正常" name="states"     >
+                                        <label for="inlineRadio1">正常</label>
+                                    </div>
+                                    <div class="radio radio-inline">
+                                        <input type="radio" id="inlineRadio2s" value="冻结" name="states"  checked >
+                                        <label for="inlineRadio2"> 冻结</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2  control-label">关联档案</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" data-toggle="dropdown" id="yys" yyy="" readonly old="" >
+                                        <input type="hidden" id="edit_info" user_id=""  user_number="" user_id_crad="" user_gender="" user_post="" />
+                                        <input type="hidden" id="edit_infos" user_id=""  user_number="" user_id_crad="" user_gender="" user_post="" />
+                                        <table class="table  tab-content table-bordered table-hover dropdown-menu" style="max-height: 500px;overflow: auto">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 5%">ID</th>
+                                                <th style="width: 15%">姓名</th>
+                                                <th style="width: 15%" >工号</th>
+                                                <th style="width: 10%">性别</th>
+                                                <th style="width: 35%">身份证</th>
+                                                <th style="width: 20%">职位</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="delete_ok">
+                                            {volist name='staff' id='value'}
+                                            <tr class="relations">
+                                                <td>{$value.id}</td>
+                                                <td >{$value.name}</td>
+                                                <td>{$value.number}</td>
+                                                <td>{$value.gender}</td>
+                                                <td>{$value.id_card}</td>
+                                                <td>{$value.post}</td>
+                                            </tr>
+                                            {/volist}
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submits" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="edit"> <span class="glyphicon glyphicon-pencil"></span> 编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="delete"> <span class="glyphicon glyphicon-trash"></span>  删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="userRole"> <span class="fa fa-unlock-alt"></span> 分配角色</a>&nbsp;&nbsp;&nbsp;
+                            <button  name="all" id="checkboxAll"  class="btn btn-primary btn-sm" type="button"><i class="fa fa-check"></i>&nbsp;全选</button>
+                            <button  name="no"  id="checkedNo" class="btn btn-danger btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i>&nbsp;全不选</button>
+                            <button  name="reverse"id="checkedRev"  class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-random"></i>&nbsp;反选</button>
+                            <a  href="" class="btn btn-warning  btn-sm "><i class="glyphicon glyphicon-refresh"></i>  重置 / 刷新</a>
+                            <p></p>
+
+                            <!--bootstrap-->
+
+                            <div role="form" class=" form-group-sm" style="width: 1480px;">
+                                <label>账号&nbsp;&nbsp;</label>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail2" class="sr-only" ></label>
+                                    <input type="text" placeholder="账号" id="exampleInputEmail2" class="form-control" name="accounts" >
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="state" >
+                                        <option value="正常" >正常</option>
+                                        <option  value="冻结" >冻结</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group" id="data_5">
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="start" value="{:date('Y-m-d')}"  style="background: white"  readonly id="start" />
+                                            <span class="input-group-addon">到</span>
+                                            <input type="text" class="input-sm form-control" name="end" value="{:date('Y-m-d',time()+86400)}" style="background: white"  readonly  id="end" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-white btn-sm" id="select" >查询</button>
+                            </div>
+                            <br>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+
+                    <thead >
+                    <tr role="row">
+                        <th class="sorting_asc_disabled" tabindex="0" aria-controls="DataTables_Table_0"  style="width: 30px;">
+                            <div class="text-center">
+                                <input type="checkbox" disabled >
+                            </div>
+
+                        </th>
+                        <th class="sorting_asc_disabled text-center" tabindex="0" >登陆账号</th>
+                        <th class="sorting_asc_disabled text-center"  >登陆时间</th>
+                        <th class="sorting_asc_disabled text-center"  >登陆IP</th>
+                        <th class="sorting_asc_disabled text-center"  >登陆次数</th>
+                        <th class="sorting_asc_disabled text-center"  >状态</th>
+                        <th class="sorting_asc_disabled text-center"  >所拥有角色</th>
+                        <th class="sorting_asc_disabled text-center"  >创建时间</th>
+                    </thead>
+                    <tbody id="ok-create">
+
+                    {volist name='data' id='value'}
+                    <tr class="gradeA odd {$value.id} select-remove">
+                        <td class="sorting_1">
+                            <div class="text-center">
+                                <input type="checkbox" name="check[]"  yang="yang"  value="{$value.id}" checked>
+                            </div>
+                        </td>
+                        <td class="text-center ">{$value.accounts}</td>
+                        <td class="text-center">{$value.last_login_time}</td>
+                        <td class="text-center">{$value.last_login_ip}</td>
+                        <td class="text-center">{$value.login_count}</td>
+                        <td class="text-center">{$value.state}</td>
+                        <td class="text-center">
+                           {volist name='$value.Role' id='v'}
+                                {$v.name}
+                            {/volist}
+                        </td>
+                        <td class="text-center">{$value.create_time}</td>
+                    </tr>
+                    {/volist}
+
+                </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_info" id="DataTables_Table_0_info" role="alert" aria-live="polite" aria-relevant="all">显示 1 到 10 项，共 {$count} 项数据</div>
+                        <div class="text-right" id="page">
+                            {$data->render()}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!--jquery 全选，不全选，反选...-->
+            <script>
+                $("[yang=yang]:checkbox:checked").val();
+
+                $('#add_delete_ok').on('click','.relation',function () {
+                    $('#yy').val($(this).children().next().html());
+                    $('#yy').attr('yyy',$(this).children().html())
+                    $(this).attr('id',$(this).children().html());
+                    $('#yy').val($(this).children().next().html())
+
+                })
+
+                $('#delete_ok').on('click','.relations',function () {
+                    $('#yys').val($(this).children().next().html());
+                    $('#yys').attr('yyy',$(this).children().html())
+                    $(this).attr('id',$(this).children().html());
+                    $('#yys').val($(this).children().next().html())
+
+
+                    $("#edit_info").attr('user_name',$(this).children().next().html());
+                    $("#edit_info").attr('user_id',$(this).children().html());
+                    $("#edit_info").attr('user_number',$(this).children().next().next().html());
+                    $("#edit_info").attr('user_gender',$(this).children().next().next().next().html());
+                    $("#edit_info").attr('user_id_card',$(this).children().next().next().next().next().html());
+                    $("#edit_info").attr('user_post',$(this).children().next().next().next().next().next().html());
+
+                })
+
+
+
+
+              //  alert( $('[name=state]:radio:checked').val())
+                $(function() {  //prop和attr方法都是设置或者修改被选元素的属性，
+                    // prop方法用于HTML元素本身就带有的固有属性，
+                    // attr方法用于HTML元素自己定义的dom属性，
+
+                    $("#checkedAll").click(function() {
+
+                        if (this.checked) {
+
+                            $("[yang=yang]:checkbox").prop("checked", true);
+                        }else {
+
+                            $("[yang=yang]:checkbox").prop("checked", false);
+                        }
+                    });
+
+                    $("#checkboxAll").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", true);
+                    });
+
+                    $("#checkedNo").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", false);
+                    });
+
+                    $("#checkedRev").click(function() {
+
+                        $("[yang=yang]:checkbox").each(function() {
+                            console.log(this.checked);
+                            this.checked = !this.checked//this指当前的html对象
+                        });
+                    });
+
+                    $("#submit").click(function() {
+
+                        var str = "你喜欢的是："
+                        $("[yang=yang]:checkbox:checked").each(function() {
+
+                            str += $(this).val() + "||";//这里$(this)指的是jquery对象
+                        })
+
+                        console.log(str);
+                    });
+                })
+
+
+                //add
+                $('#submit').click(function () {
+                    $.ajax({
+                        type:'POST',
+                        url:'user',
+                        data:{
+                            staff_id:$('#yy').attr('yyy'),
+                            staff_name:$('#yy').val(),
+                            accounts:$('#name').val(),
+                            password:$('#password').val(),
+                            state:$('[name=state]:radio:checked').val()
+                        },
+
+                        beforeSend:function(){
+                            $('#myModal').modal('hide');
+                            $('#ok').modal('show');
+                        },
+                        success:function(response,stutas,xhr) {
+                            if (response > 0) {
+                                $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                $('#ok-text').html('数据添加成功');
+                                $('#yy').val('');
+                                $('#'+$('#yy').attr('yyy')+'').remove();
+
+                                for (var y=0; y< $('.relations').length; y++){
+                                    if($('.relations').eq(y).children().html()==$('#yy').attr('yyy')){
+                                        $('.relations ').eq(y).remove();
+                                    }
+                                }
+
+                                $('#ok-create').prepend('<tr   class="gradeA odd ' + response + ' select-remove  ">\n' +
+                                    '                        <td class="sorting_1">\n' +
+                                    '                            <div class="text-center">\n' +
+                                    '                                <input type="checkbox" name="check[]"  yang="yang"  value=" '+ response + ' " >\n' +
+                                    '                            </div>\n' +
+                                    '                        </td>\n' +
+                                    '                        <td class="text-center " > ' + $('#name').val() + ' </td>\n' +
+                                    '                        <td class="text-center"> {:date("Y-m-d H:i:s")} </td>\n' +
+                                    '                        <td class="text-center">{:$_SERVER["SERVER_ADDR"]} </td>\n' +
+                                    '                        <td class="text-center"> 0 </td>\n' +
+                                    '                        <td class="text-center"> ' + $('[name=state]:radio:checked').val() + ' </td>\n' +
+                                    '                        <td class="text-center"> </td>\n' +
+                                    '                        <td class="text-center">{:date("Y-m-d H:i:s")}</td>\n' +
+                                    '                    </tr>');
+
+                                $('#y').html($('#name').val());
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                }, 1000)
+                            }else {
+                                $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                $('#ok-text').html(response['msg']);
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1000)
+                            }
+                        }
+
+                    });
+                });
+
+                //delete
+                $("#delete").click(function(){
+                    if ($("[yang=yang]:checkbox:checked").length>0){
+                        var delete_id=[];
+                        var i=0;
+                        $.each($("[yang=yang]:checkbox:checked"),function(){
+                            if(this.checked){
+                                delete_id[i]=$(this).val();
+                                i++;
+                            }
+                        });
+                        var num=JSON.stringify((delete_id));
+                        $.ajax({
+                            type:'DELETE',
+                            url:'user/delete',
+                            data:{
+                                id:num,
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+
+                                if(response){
+                                for (var i=0; i<response.length; i++){
+                                    $('#delete_ok').prepend('<tr class="relations" >\n' +
+                                        '                                                <td>'+response[i]['id']+'</td>\n' +
+                                        '                                                <td >'+response[i]['name'] +'</td>\n' +
+                                        '                                                <td>'+ response[i]['number']+'</td>\n' +
+                                        '                                                <td>'+response[i]['gender'] +'</td>\n' +
+                                        '                                                <td>'+response[i]['id_card']+'</td>\n' +
+                                        '                                                <td>'+response[i]['post']+'</td>\n' +
+                                        '                                            </tr>');
+                                    $('#add_delete_ok').prepend(' <tr class="relation">\n' +
+                                        '                                                <td>'+response[i]['id']+'</td>\n' +
+                                        '                                                <td >'+response[i]['name']+'</td>\n' +
+                                        '                                                <td>'+ response[i]['number'] +'</td>\n' +
+                                        '                                                <td>'+response[i]['gender']+'</td>\n' +
+                                        '                                                <td>'+response[i]['id_card']+'</td>\n' +
+                                        '                                                <td>'+response[i]['post']+'</td>\n' +
+                                        '                                            </tr>');
+                                }
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据删除成功');
+                                    // for (var i=0; i<delete_id.length; i++){
+                                    //     var j='.'+delete_id[i];
+                                    //     $(j).hide();
+                                    // }
+                                    $("[yang=yang]:checkbox:checked").parent().parent().parent().hide();
+                                    setTimeout(function () {
+                                        $("[yang=yang]:checkbox:checked").attr('checked',false);
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+
+                            }
+                        })
+                    }else {
+                        alert('至少有一个选中');
+                    }
+                });
+
+                $('.relationsss').click(function () {
+                    alert ();
+                })
+
+
+                //edit
+                $('#edit').click(function(){
+
+                    if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+                        alert('至少有一个被选中，且只能选中一个');
+                    }else{
+                        var ids=$("[yang=yang]:checkbox:checked").val();
+                        $.ajax({
+                            type:'GET',
+                            url:'user/'+ids+'/edit',
+                            data:{
+                                id:ids
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                $('#names').val(response['accounts']);
+                                $('#yys').val(response['staff_name']);
+                                $('#yys').attr('old',response['old_staff_id']);
+
+
+                                //所有信息
+                                $("#edit_infos").attr('user_name',response['old_staff_name']);
+                                $("#edit_infos").attr('user_id',response['old_staff_id']);
+                                $("#edit_infos").attr('user_number',response['old_staff_number']);
+                                $("#edit_infos").attr('user_gender',response['old_staff_gender']);
+                                $("#edit_infos").attr('user_id_card',response['old_staff_id_card']);
+                                $("#edit_infos").attr('user_post',response['old_staff_post']);
+
+
+                               // alert(response['state']);
+                                if (response['state']=='正常'){
+                                    $('#inlineRadio1s')[0].checked = true
+                                    $('#inlineRadio2s').removeAttr("checked");
+                                } else {
+                                    $('#inlineRadio2s')[0].checked = true
+                                    $('#inlineRadio1s').removeAttr("checked");
+                                }
+                               // $('#passwords').val(response['password']);
+                                $('#myModals').modal('show');
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1)
+                            }
+                        })
+
+                    }
+                    //update
+                    $('#submits').click(function(){
+                        $.ajax({
+                            type:'PUT',
+                            url:'user/update',
+                            data:{
+                                staff_id:$('#yys').attr('yyy'),
+                                id:ids,
+                                password:$('#passwords').val(),
+                                state:$('[name=states]:radio:checked').val(),
+                                old_staff_id:$('#yys').attr('old'),
+                                staff_name:$('#yys').val(),
+                            },
+                            beforeSend:function(){
+                                $('#myModals').modal('hide');
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr){
+
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据修改成功');
+                                //    $("[yang=yang]:checkbox:checked").parent().parent().next().text($('#names').val());
+                                    for (var i=0; i<$('.relations').length; i++){
+                                        if($('.relations').eq(i).children().html()==$('#yys').attr('yyy')){
+                                            $('.relations').eq(i).remove();
+                                            $('#delete_ok').prepend('<tr class="relations" >\n' +
+                                                '                                                <td>'+  $("#edit_infos").attr('user_id') +'</td>\n' +
+                                                '                                                <td >'+ $("#edit_infos").attr('user_name') +'</td>\n' +
+                                                '                                                <td>'+ $("#edit_infos").attr('user_number')+'</td>\n' +
+                                                '                                                <td>'+ $("#edit_infos").attr('user_gender')+'</td>\n' +
+                                                '                                                <td>'+ $("#edit_infos").attr('user_id_card')+'</td>\n' +
+                                                '                                                <td>'+  $("#edit_infos").attr('user_post') +'</td>\n' +
+                                                '                                            </tr>');
+                                        }
+                                    }
+                                    //修改的信息
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+
+                            },
+
+
+                        })
+                    });
+
+                });
+
+                //select
+              $('#select').click(function () {
+                  var accounts=$('#exampleInputEmail2').val();
+                  var start=$('#start').val();
+                  var end=$('#end').val();
+                  var state=$("option:selected").val();
+
+                  if (accounts.length==0){
+                      alert('账号名称不得为空');
+                  }else {
+                      $.ajax({
+                          type: 'GET',
+                          url: 'user',
+                          data: {
+                              'accounts':accounts,
+                              'state':state,
+                              'start': start,
+                              'end': end
+                          },
+                          beforeSend: function () {
+                              $('#ok').modal('show');
+                          },
+                          success: function (r, s, x) {
+
+                              if (r['data'].length != 0) {
+                                  $('.select-remove').remove();
+                                  var data = r['data'];
+                                  for (var i = 0; i < r['data'].length; i++) {
+                                      $('#page').hide();
+                                      $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                      $('#ok-text').html('数据查询成功');
+                                      //  alert(r['data'][i]['id']+r['data'][i]['name']+r['data'][i]['create_time']);
+                                      $('#ok-create').prepend('<tr class="gradeA odd  '+  r['data'][i]['id'] +'  select-remove">\n' +
+                                          '                        <td class="sorting_1">\n' +
+                                          '                            <div class="text-center">\n' +
+                                          '                                <input type="checkbox" name="check[]"  yang="yang"  value=" '+ r['data'][i]['id']  +' " >\n' +
+                                          '                            </div>\n' +
+                                          '                        </td>\n' +
+                                          '                        <td class="text-center ">'+ r['data'][i]['accounts']  +'</td>\n' +
+                                          '                        <td class="text-center">'+ r['data'][i]['last_login_time']  +'</td>\n' +
+                                          '                        <td class="text-center">'+ r['data'][i]['last_login_ip']  +'</td>\n' +
+                                          '                        <td class="text-center">' + r['data'][i]['create_time'] + '</td>\n' +
+                                          '                        <td class="text-center">'+ r['data'][i]['state']  +'</td>\n' +
+                                          '                        <td class="text-center">'+ r['data'][i]['create_time']  +'</td>\n' +
+                                          '                    </tr>');
+
+
+                                      setTimeout(function () {
+                                          $('#ok').modal('hide');
+                                          $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                          $('#ok-text').html('数据交互中..,');
+                                      }, 1000)
+
+                                  }
+                              } else {
+                                  $('.select-remove').remove();
+                                  $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                  $('#ok-text').html('查询数据为空');
+                                  setTimeout(function () {
+                                      $('#ok').modal('hide');
+                                      $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                      $('#ok-text').html('数据交互中..,');
+                                  }, 1000)
+                              }
+
+                          }
+
+                      });
+                  }
+
+              });
+
+
+
+
+
+
+                $('#userRole').click(function(){
+                    if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+                        alert('至少有一个被选中，且只能选中一个');
+                    }else{
+                        var ids=$("[yang=yang]:checkbox:checked").val();
+                        $.ajax({
+                            type:'GET',
+                            url:'user_role/'+ids+'/edit',
+                            data:{
+                                id:ids
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+
+                                $("#userRoles").val(response['accounts']);
+
+                                $('#myModalss').modal('show');
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1)
+                            }
+                        });
+
+                        $("#submitss").click(function () {
+                           $.ajax({
+                               url:'user_role',
+                               type:'POST',
+                               data:{
+                                   'role_id':$("#role option:selected").val(),
+                                   'id':ids
+                               },
+                               beforeSend:function(){
+                                   $('#myModalss').modal('hide');
+                                   $('#ok').modal('show');
+                               },
+                               success:function (response,stutas,xhr){
+                                    if (response==true){
+                                        $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                        $('#ok-text').html('数据修改成功');
+
+
+
+
+                                        //修改的信息
+                                        setTimeout(function () {
+                                            $('#ok').modal('hide');
+                                            $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                            $('#ok-text').html('数据交互中..,');
+                                        },1000)
+                                    }
+
+
+                               },
+
+                           })
+                        });
+                    }
+                });
+
+
+            </script>
+
+
+            {include file='layout/footer'}

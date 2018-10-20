@@ -1,0 +1,686 @@
+{include file='layout/header'}
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>产品信息</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="table_data_tables.html#">选项1</a>
+                    </li>
+                    <li><a href="table_data_tables.html#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <!--成功-->
+            <div class="modal " tabindex="-1"  id="ok" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 180px;">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <img src="__IMG__/loading.gif" alt="" style="margin-left: -20px;" id="ok-img" > <span id="ok-text">&nbsp;&nbsp;数据交互中...</span>
+                        </div>
+                        <!-- 注脚 -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!--add-->
+            <div class="modal " tabindex="-1"  id="myModal" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 900px; ">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建产品</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body" style="overflow: auto; height: 600px;">
+                            <form class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入产品编号" name="name" id="name" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品编号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入产品编号" name="name" id="sn" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品类型</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="type" >
+                                            <option value=""></option>
+                                            <option value="办公耗材">办公耗材</option>
+                                            <option value="数码产品">数码产品</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">采购价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入采购价格" name="name" id="pro_price" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">销售价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入销售价格" name="name" id="sell_price" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">计量单位</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入计量单位量" name="name" id="unit" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">库存报警</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入库存报警数" name="name" id="inventory_alarm" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">详情备注</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%; " rows="10"></textarea>      </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submit" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--edit-->
+            <div class="modal " tabindex="-1"  id="myModals" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 900px; ">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 修改产品信息</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body" style="overflow: auto; height: 600px;">
+                            <form class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入产品编号" name="name" id="names" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品编号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入产品编号" name="name" id="sns" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">产品类型</label>
+                                    <div class="col-sm-10">
+                                        <select class=" form-control " id="types" >
+                                            <option value=""></option>
+                                            <option value="办公耗材">办公耗材</option>
+                                            <option value="数码产品">数码产品</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">采购价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入采购价格" name="name" id="pro_prices" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">销售价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入销售价格" name="name" id="sell_prices" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">计量单位</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入计量单位量" name="name" id="units" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">库存报警</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control "  placeholder="请输入库存报警数" name="name" id="inventory_alarms" >
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">详情备注</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="content" class="common-textarea" id="contents" cols="30" style="width: 98%; " rows="10"></textarea>      </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submits" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--list-->
+            <div class="modal" tabindex="-1"  id="myModalss" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 产品信息详情</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <table class="table table-hover table-bordered text-center">
+                                <tr>
+                                    <th colspan="5" align="left"> 产品信息详情</th>
+                                </tr>
+                                <tr>
+                                    <td width="15%">产品编号：</td>
+                                    <td width="80%"  id="details_sn"></td>
+                                </tr>
+                                <tr>
+                                    <td>产品名称：</td>
+                                    <td id="details_name"></td>
+                                </tr>
+                                <tr>
+                                    <td>产品类型：</td>
+                                    <td id="details_type"></td>
+                                </tr>
+                                <tr>
+                                    <td>计量单位：</td>
+                                    <td id="details_unit"></td>
+                                </tr>
+                                <tr>
+                                    <td>采购价格：</td>
+                                    <td id="details_pro_price"></td>
+                                </tr>
+                                <tr>
+                                    <td>销售价格：</td>
+                                    <td id="details_sell_price"></td>
+                                </tr>
+                                <tr>
+                                    <td>出库总量：</td>
+                                    <td id="details_inventory_in"></td>
+                                </tr>
+                                <tr>
+                                    <td>创建时间：</td>
+                                    <td id="details_create_time"></td>
+                                </tr>
+                                <tr>
+                                    <td>详情备注：</td>
+                                    <td id="details_details"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">关闭</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="edit"> <span class="glyphicon glyphicon-pencil"></span> 编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="delete"> <span class="glyphicon glyphicon-trash"></span>  删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <button  name="all" id="checkboxAll"  class="btn btn-primary btn-sm" type="button"><i class="fa fa-check"></i>&nbsp;全选</button>
+                            <button  name="no"  id="checkedNo" class="btn btn-danger btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i>&nbsp;全不选</button>
+                            <button  name="reverse"id="checkedRev"  class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-random"></i>&nbsp;反选</button>
+                            <a  href="" class="btn btn-warning  btn-sm "><i class="glyphicon glyphicon-refresh"></i>  重置 / 刷新</a>
+                            <p></p>
+
+                            <!--bootstrap-->
+
+                            <div role="form" class=" form-group-sm" style="width: 1480px;">
+                                <label>关键字：&nbsp;&nbsp;</label>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail2" class="sr-only" ></label>
+                                    <input type="text" placeholder="关键字" id="exampleInputEmail2" class="form-control" name="accounts" >
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group" id="data_5">
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="start" value="{:date('Y-m-d')}"  readonly  style="background: white" id="start" />
+                                            <span class="input-group-addon">到</span>
+                                            <input type="text" class="input-sm form-control" name="end" value="{:date('Y-m-d',time()+86400)}" style="background: white"  readonly  id="end" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-white btn-sm" id="select" >查询</button>
+                            </div>
+                            <br>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+
+                    <thead >
+                    <tr role="row">
+                        <th class="sorting_asc_disabled" tabindex="0" aria-controls="DataTables_Table_0"  style="width: 30px;">
+                            <div class="text-center">
+                                <input type="checkbox" disabled >
+                            </div>
+
+                        </th>
+                        <th class="sorting_asc_disabled text-center" tabindex="0" >产品编号</th>
+                        <th class="sorting_asc_disabled text-center"  >产品名称</th>
+                        <th class="sorting_asc_disabled text-center"  >产品类型</th>
+                        <th class="sorting_asc_disabled text-center"  >计量单位</th>
+                        <th class="sorting_asc_disabled text-center"  >采购价格</th>
+                        <th class="sorting_asc_disabled text-center"  >销售价格</th>
+                        <th class="sorting_asc_disabled text-center"  >库存</th>
+                        <th class="sorting_asc_disabled text-center"  >入库总量</th>
+                        <th class="sorting_asc_disabled text-center"  >出库总量</th>
+                        <th class="sorting_asc_disabled text-center"  >库存报警</th>
+                        <th class="sorting_asc_disabled text-center"  >创建时间</th>
+                        <th class="sorting_asc_disabled text-center"  >详情</th>
+
+
+                    </thead>
+                    <tbody id="ok-create">
+                    {volist name='data' id='value'}
+                    <tr class="gradeA odd  {$value.id}  select-remove">
+                        <td class="sorting_1">
+                            <div class="text-center">
+                                <input type="checkbox" name="check[]"  yang="yang"  value="{$value.id}" >
+                            </div>
+                        </td>
+                        <td class="text-center  ">{$value.sn}</td>
+                        <td class="text-center">{$value.name}</td>
+                        <td class="text-center  ">{$value.type}</td>
+                        <td class="text-center">{$value.unit}</td>
+                        <td class="text-center  ">{$value.pro_price}</td>
+                        <td class="text-center">{$value.sell_price}</td>
+                        <td class="text-center  ">{$value.inventory}</td>
+                        <td class="text-center">{$value.inventory_in}</td>
+                        <td class="text-center  ">{$value.inventory_out}</td>
+                        <td class="text-center">{$value.inventory_alarm}</td>
+                        <td class="text-center  ">{$value.create_time}</td>
+                        <td class="text-center">
+                            <a class="details"   details_id="{$value.id}"><i class="fa fa-file-text-o"></i>  </a>
+                        </td>
+                    </tr>
+                    {/volist}
+
+                </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-right" id="page">
+                            {$data->render()}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--jquery 全选，不全选，反选...-->
+            <script>
+
+               $("#ok-create").on('click','.details',function () {
+                   $.ajax({
+                       type:"POST",
+                       url:'product/details',
+                       data:{
+                           id:$(this).attr('details_id'),
+                       },
+                       beforeSend:function(){
+                           $('#ok').modal('show');
+                       },
+                       success:function (r,s,x) {
+                           $("#details_name").html(r['name']);
+                           $("#details_sn").html(r['sn']);
+                           $("#details_type").html(r["type"]);
+                           $("#details_unit").html(r["unit"]);
+                           $("#details_pro_price").html(r["pro_price"]);
+                           $("#details_create_time").html(r["create_time"]);
+                           $('#details_sell_price').html(r['sell_price']);
+                           $("#details_details").html(r['details']);
+                           $("#details_inventory_in").html(r['inventory_in']);
+                           setTimeout(function () {
+                               $('#myModalss').modal('show');
+                               $('#ok').modal('hide');
+                               $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                               $('#ok-text').html('数据交互中..,');
+                           }, 1000)
+                       }
+
+
+                   });
+               });
+
+                $(function() {  //prop和attr方法都是设置或者修改被选元素的属性，
+                    // prop方法用于HTML元素本身就带有的固有属性，
+                    // attr方法用于HTML元素自己定义的dom属性，
+
+                    $("#checkedAll").click(function() {
+
+                        if (this.checked) {
+
+                            $("[yang=yang]:checkbox").prop("checked", true);
+                        }else {
+
+                            $("[yang=yang]:checkbox").prop("checked", false);
+                        }
+                    });
+
+                    $("#checkboxAll").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", true);
+                    });
+
+                    $("#checkedNo").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", false);
+                    });
+
+                    $("#checkedRev").click(function() {
+
+                        $("[yang=yang]:checkbox").each(function() {
+                            console.log(this.checked);
+                            this.checked = !this.checked//this指当前的html对象
+                        });
+                    });
+
+                    $("#submit").click(function() {
+
+                        var str = "你喜欢的是："
+                        $("[yang=yang]:checkbox:checked").each(function() {
+
+                            str += $(this).val() + "||";//这里$(this)指的是jquery对象
+                        })
+
+                        console.log(str);
+                    });
+                })
+                UE.getEditor('content',{initialFrameWidth:680,initialFrameHeight:400,});
+                UE.getEditor('contents',{initialFrameWidth:680,initialFrameHeight:400,});
+
+                $('#submit').click(function () {
+                     $.ajax({
+                         url:'product',
+                         type:'POST',
+                         data:{
+                             name:$('#name').val(), //姓名
+                             sn:$("#sn").val(),
+                             pro_price:$("#pro_price").val(),
+                             sell_price:$("#sell_price").val(),
+                             unit:$("#unit").val(),
+                             inventory_alarm:$("#inventory_alarm").val(),
+                             details:UE.getEditor('content').getContent(),
+                             type:$('#type option:selected').val(),
+                         },
+                         beforeSend:function(){
+                             $('#myModal').modal('hide');
+                             $('#ok').modal('show');
+                         },
+                         success:function (r,s,x) {
+                             if (r > 0) {
+                                 $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                 $('#ok-text').html('数据添加成功');
+                                 $('#ok-create').prepend('<tr class="gradeA odd  '+ r +'  select-remove">\n' +
+                                     '                        <td class="sorting_1">\n' +
+                                     '                            <div class="text-center">\n' +
+                                     '                                <input type="checkbox" name="check[]"  yang="yang"  value=" '+ r +' " >\n' +
+                                     '                            </div>\n' +
+                                     '                        </td>\n' +
+                                     '                        <td class="text-center  ">'+ $("#sn").val() +'</td>\n' +
+                                     '                        <td class="text-center">'+ $("#name").val() +'</td>\n' +
+                                     '                        <td class="text-center  ">'+ $('#type option:selected').val()+'</td>\n' +
+                                     '                        <td class="text-center">'+ $("#unit").val() +'</td>\n' +
+                                     '                        <td class="text-center  ">'+ $("#pro_price").val() +'</td>\n' +
+                                     '                        <td class="text-center">'+ $("#sell_price").val() +'</td>\n' +
+                                     '                        <td class="text-center  ">xx</td>\n' +
+                                     '                        <td class="text-center">212</td>\n' +
+                                     '                        <td class="text-center  ">xx</td>\n' +
+                                     '                        <td class="text-center">'+ $("#inventory_alarm").val() +'</td>\n' +
+                                     '                        <td class="text-center  ">{:date("Y-m-d H:i:s")}</td>\n' +
+                                     '                        <td class="text-center">\n' +
+                                     '                            <a class="details"   details_id=" '+ r +' "><i class="fa fa-file-text-o"></i>  </a>\n' +
+                                     '                        </td>\n' +
+                                     '                    </tr>');
+
+
+                                 setTimeout(function () {
+                                     $('#ok').modal('hide');
+                                     $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                     $('#ok-text').html('数据交互中..,');
+                                 }, 1000)
+
+                             }else{
+                                 $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                 $('#ok-text').html(response['msg']);
+                                 setTimeout(function () {
+                                     $('#ok').modal('hide');
+                                     $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                     $('#ok-text').html('数据交互中..,');
+                                 },1000)
+                             }
+                         }
+                     });
+                })
+
+                //delete
+                $("#delete").click(function(){
+                    if ($("[yang=yang]:checkbox:checked").length>0){
+                        var delete_id=[];
+                        var i=0;
+                        $.each($("[yang=yang]:checkbox:checked"),function(){
+                            if(this.checked){
+                                delete_id[i]=$(this).val();
+                                i++;
+                            }
+                        });
+                        var num=JSON.stringify((delete_id));
+                        $.ajax({
+                            type:'DELETE',
+                            url:'product/delete',
+                            data:{
+                                id:num,
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                if(response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据删除成功');
+                                    // for (var i=0; i<delete_id.length; i++){
+                                    //     var j='.'+delete_id[i];
+                                    //     $(j).hide();
+                                    // }
+                                    $("[yang=yang]:checkbox:checked").parent().parent().parent().hide();
+                                    setTimeout(function () {
+                                        $("[yang=yang]:checkbox:checked").attr('checked',false);
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+
+                            }
+                        })
+                    }else {
+                        alert('至少有一个选中');
+                    }
+                });
+
+                //edit
+                $('#edit').click(function(){
+
+                    if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+                        alert('至少有一个被选中，且只能选中一个');
+                    }else{
+                        var ids=$("[yang=yang]:checkbox:checked").val();
+                        $.ajax({
+                            type:'GET',
+                            url:'product/'+ids+'/edit',
+                            data:{
+                                id:ids
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                $('#ok').modal('hide');
+                                $("#names").val(response['name']);
+                                $("#sns").val(response['sn']);
+                                $("#pro_prices").val(response['pro_price']);
+                                $("#sell_prices").val(response['pro_price']);
+                                $("#units").val(response['unit']);
+                                $("#inventory_alarms").val(response['inventory_alarm']);
+                                UE.getEditor('contents').setContent(response['details']);
+                                for (var j=1; j< $('#types option').length; j++){
+                                    if ( $("#types option:eq(' "+ j +" ')").val()==response['type']){
+                                        $("#types option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+                                $('#myModals').modal('show');
+                                setTimeout(function () {
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1)
+                            }
+                        })
+
+                    }
+                    //update
+                    $('#submits').click(function(){
+                        $.ajax({
+                            type:'PUT',
+                            url:'product/update',
+                            data:{
+                                id:ids,
+                                name:$('#names').val(), //姓名
+                                sn:$("#sns").val(),
+                                pro_price:$("#pro_prices").val(),
+                                sell_price:$("#sell_prices").val(),
+                                unit:$("#units").val(),
+                                inventory_alarm:$("#inventory_alarms").val(),
+                                details:UE.getEditor('contents').getContent(),
+                                type:$('#types option:selected').val(),
+
+                            },
+                            beforeSend:function(){
+                                $('#myModals').modal('hide');
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr){
+                                if (response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据修改成功');
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().text($('#sns').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().text($('#names').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().text($('#types option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().text($('#units').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().text($('#pro_prices').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().text($('#sell_prices').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().text($('#entry_statuss option:selected').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().next().next().text($("#inventory_alarms").val());
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }else {
+                                    $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                    $('#ok-text').html(response['msg']);
+                                    $('#ok-text').html('数据异常！');
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+                            }
+
+
+                        })
+                    });
+
+                });
+                //select
+
+
+
+            </script>
+
+            {include file='layout/footer'}

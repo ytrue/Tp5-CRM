@@ -1,0 +1,799 @@
+{include file='layout/header'}
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>跟单记录</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="table_data_tables.html#">选项1</a>
+                    </li>
+                    <li><a href="table_data_tables.html#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+
+            <!--成功-->
+            <div class="modal " tabindex="-1"  id="ok" data-backdrop="static" >
+                <div class="modal-dialog" style="width: 180px;">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <img src="__IMG__/loading.gif" alt="" style="margin-left: -20px;" id="ok-img" > <span id="ok-text">&nbsp;&nbsp;数据交互中...</span>
+                        </div>
+                        <!-- 注脚 -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!--add-->
+            <div class="modal" tabindex="-1"  id="myModal" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建跟单</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="control-label">跟单标题</label>
+                                    <input type="text" class="form-control "  id="title" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label class=" control-label">关联公司</label>
+                                    <div class=" input-group">
+                                        <input type="text" class="form-control "    id="client_company"   >
+                                        <div class="input-group-addon" id="test"><span class="glyphicon glyphicon-search"></span></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class=" control-label">跟单员</label>
+                                    <div class=" input-group">
+                                        <input type="text" class="form-control "  id="user" user_id=""  readonly  style="background: white">
+                                        <div class="input-group-addon " id="tests"><span class="glyphicon glyphicon-search"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">跟单方式</label>
+                                    <select class="form-control" id="way">
+                                        <option></option>
+                                        <option value="电话沟通">电话沟通</option>
+                                        <option value="上门拜访">上门拜访</option>
+                                        <option value="网络咨询">网络咨询</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">进展情况</label>
+                                    <select class="form-control" id="evolve">
+                                        <option></option>
+                                        <option value="谈判中">谈判中</option>
+                                        <option value="已放弃">已放弃</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">详情备注</label>
+                                    <input type="text" class="form-control "  placeholder="20字以内备注说明"  id="remark" >
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submit" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--edit-->
+            <!--add-->
+            <div class="modal" tabindex="-1"  id="myModals" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 新建跟单</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label class="control-label">跟单标题</label>
+                                    <input type="text" class="form-control "  id="titles" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label class=" control-label">关联公司</label>
+                                    <div class=" input-group">
+                                        <input type="text" class="form-control "    id="client_companys"   >
+                                        <div class="input-group-addon" id="testss"><span class="glyphicon glyphicon-search"></span></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class=" control-label">跟单员</label>
+                                    <div class=" input-group">
+                                        <input type="text" class="form-control "  id="users" user_id=""  readonly  style="background: white">
+                                        <div class="input-group-addon " id="testsss"><span class="glyphicon glyphicon-search"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">跟单方式</label>
+                                    <select class="form-control" id="ways">
+                                        <option></option>
+                                        <option value="电话沟通">电话沟通</option>
+                                        <option value="上门拜访">上门拜访</option>
+                                        <option value="网络咨询">网络咨询</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">进展情况</label>
+                                    <select class="form-control" id="evolves">
+                                        <option></option>
+                                        <option value="谈判中">谈判中</option>
+                                        <option value="已放弃">已放弃</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">详情备注</label>
+                                    <input type="text" class="form-control "  placeholder="20字以内备注说明"  id="remarks" >
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                        <div class="modal-footer">
+                            <a   class="btn btn-primary"  id="submits" > <span class="glyphicon glyphicon-ok">保存</span>  </a>
+                            <a  class="btn btn-danger" style="margin-top: -5px;" data-dismiss="modal" > <span class="glyphicon glyphicon-remove">取消</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Product name-->
+            <div class="modal" tabindex="-1"  id="product_name" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 选择产品</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr >
+                                        <th></th>
+                                        <th  class="text-center">公司名称</th>
+                                        <th  class="text-center">联系人</th>
+                                        <th  class="text-center">移动电话</th>
+                                        <th  class="text-center">选择客户</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center" id="product_ok">
+                                    {volist name='client' id='value'}
+                                    <tr class="product">
+                                        <td>{$value.id}</td>
+                                        <td>{$value.company}</td>
+                                        <td>{$value.name}</td>
+                                        <td>{$value.tel}</td>
+                                        <td><span class="glyphicon glyphicon-ok"> 选择</span></td>
+                                    </tr>
+                                    {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                    </div>
+                </div>
+            </div>
+
+            <!--Product names-->
+            <div class="modal" tabindex="-1"  id="product_names" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 选择产品</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr >
+                                        <th></th>
+                                        <th  class="text-center">公司名称</th>
+                                        <th  class="text-center">联系人</th>
+                                        <th  class="text-center">移动电话</th>
+                                        <th  class="text-center">选择客户</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center" id="product_oks">
+                                    {volist name='client' id='value'}
+                                    <tr class="product">
+                                        <td>{$value.id}</td>
+                                        <td>{$value.company}</td>
+                                        <td>{$value.name}</td>
+                                        <td>{$value.tel}</td>
+                                        <td><span class="glyphicon glyphicon-ok"> 选择</span></td>
+                                    </tr>
+                                    {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                    </div>
+                </div>
+            </div>
+
+            <!--Product user-->
+            <div class="modal" tabindex="-1"  id="product_user" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 选择经办人</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr >
+                                        <th></th>
+                                        <th  class="text-center">工号</th>
+                                        <th  class="text-center">姓名</th>
+                                        <th  class="text-center">性别</th>
+                                        <th  class="text-center">员工类型</th>
+                                        <th  class="text-center">选择产品</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center" id="staff_ok">
+                                    {volist name='staff' id='value'}
+                                    <tr class="staff">
+                                        <td>{$value.id}</td>
+                                        <td>{$value.number}</td>
+                                        <td>{$value.name}</td>
+                                        <td>{$value.gender}</td>
+                                        <td>{$value.type}</td>
+                                        <td><span class="glyphicon glyphicon-ok"> 选择</span></td>
+                                    </tr>
+                                    {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Product user-->
+            <div class="modal" tabindex="-1"  id="product_users" data-backdrop="static" >
+                <div class="modal-dialog">
+                    <!-- 内容声明 -->
+                    <div class="modal-content">
+                        <!-- 头部 -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                            <h4 class="modal-title"> <span class="glyphicon glyphicon-plus"> 选择经办人</span>  </h4>
+                        </div>
+                        <!-- 主体 -->
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr >
+                                        <th></th>
+                                        <th  class="text-center">工号</th>
+                                        <th  class="text-center">姓名</th>
+                                        <th  class="text-center">性别</th>
+                                        <th  class="text-center">员工类型</th>
+                                        <th  class="text-center">选择产品</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center" id="staff_oks">
+                                    {volist name='staff' id='value'}
+                                    <tr class="staff">
+                                        <td>{$value.id}</td>
+                                        <td>{$value.number}</td>
+                                        <td>{$value.name}</td>
+                                        <td>{$value.gender}</td>
+                                        <td>{$value.type}</td>
+                                        <td><span class="glyphicon glyphicon-ok"> 选择</span></td>
+                                    </tr>
+                                    {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注脚 -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a id="edit"> <span class="glyphicon glyphicon-pencil"></span> 编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  id="delete"> <span class="glyphicon glyphicon-trash"></span>  删除</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <button  name="all" id="checkboxAll"  class="btn btn-primary btn-sm" type="button"><i class="fa fa-check"></i>&nbsp;全选</button>
+                            <button  name="no"  id="checkedNo" class="btn btn-danger btn-sm" type="button"><i class="glyphicon glyphicon-remove"></i>&nbsp;全不选</button>
+                            <button  name="reverse"id="checkedRev"  class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-random"></i>&nbsp;反选</button>
+                            <a  href="" class="btn btn-warning  btn-sm "><i class="glyphicon glyphicon-refresh"></i>  重置 / 刷新</a>
+                            <p></p>
+
+                            <!--bootstrap-->
+
+                            <div role="form" class=" form-group-sm" style="width: 1480px;">
+                                <label>关键字：&nbsp;&nbsp;</label>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail2" class="sr-only" ></label>
+                                    <input type="text" placeholder="关键字" id="exampleInputEmail2" class="form-control" name="accounts" >
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group" id="data_5">
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="start" value="{:date('Y-m-d')}"  readonly  style="background: white" id="start" />
+                                            <span class="input-group-addon">到</span>
+                                            <input type="text" class="input-sm form-control" name="end" value="{:date('Y-m-d',time()+86400)}" style="background: white"  readonly  id="end" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-white btn-sm" id="select" >查询</button>
+                            </div>
+                            <br>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+
+                    <thead >
+                    <tr role="row">
+                        <th class="sorting_asc_disabled" tabindex="0" aria-controls="DataTables_Table_0"  style="width: 30px;">
+                            <div class="text-center">
+                                <input type="checkbox" disabled >
+                            </div>
+
+                        </th>
+                        <th class="sorting_asc_disabled text-center" tabindex="0" >跟单编号</th>
+                        <th class="sorting_asc_disabled text-center"  >跟单标题</th>
+                        <th class="sorting_asc_disabled text-center"  >公司名称</th>
+                        <th class="sorting_asc_disabled text-center"  >跟单员</th>
+                        <th class="sorting_asc_disabled text-center"  >跟单方式</th>
+                        <th class="sorting_asc_disabled text-center"  >进展情况</th>
+                        <th class="sorting_asc_disabled text-center"  >录入员</th>
+                        <th class="sorting_asc_disabled text-center"  >简单备注</th>
+                        <th class="sorting_asc_disabled text-center"  >创建时间</th>
+                    </thead>
+                    <tbody id="ok-create">
+                    {volist name='data' id='value'}
+                    <tr class="gradeA odd {$value.id} select-remove">
+                        <td class="sorting_1">
+                            <div class="text-center">
+                                <input type="checkbox" name="check[]"  yang="yang"  value="{$value.id}" >
+                            </div>
+                        </td>
+                        <td class="text-center">{$value.sn}</td>
+                        <td class="text-center">{$value.title}</td>
+                        <td class="text-center">{$value.client_company}</td>
+                        <td class="text-center">{$value.staff_name}</td>
+                        <td class="text-center">{$value.way}</td>
+                        <td class="text-center">{$value.evolve}</td>
+                        <td class="text-center">{$value.enter}</td>
+                        <td class="text-center">{$value.remark}</td>
+                        <td class="text-center">{$value.create_time}</td>
+
+                    </tr>
+                    {/volist}
+
+                </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-right" id="page">
+                            {$data->render()}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--jquery 全选，不全选，反选...-->
+            <script>
+
+                $(function() {  //prop和attr方法都是设置或者修改被选元素的属性，
+                    // prop方法用于HTML元素本身就带有的固有属性，
+                    // attr方法用于HTML元素自己定义的dom属性，
+
+                    $("#checkedAll").click(function() {
+
+                        if (this.checked) {
+
+                            $("[yang=yang]:checkbox").prop("checked", true);
+                        }else {
+
+                            $("[yang=yang]:checkbox").prop("checked", false);
+                        }
+                    });
+
+                    $("#checkboxAll").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", true);
+                    });
+
+                    $("#checkedNo").click(function() {
+
+                        $("[yang=yang]:checkbox").prop("checked", false);
+                    });
+
+                    $("#checkedRev").click(function() {
+
+                        $("[yang=yang]:checkbox").each(function() {
+                            console.log(this.checked);
+                            this.checked = !this.checked//this指当前的html对象
+                        });
+                    });
+
+                    $("#submit").click(function() {
+
+                        var str = "你喜欢的是："
+                        $("[yang=yang]:checkbox:checked").each(function() {
+
+                            str += $(this).val() + "||";//这里$(this)指的是jquery对象
+                        })
+
+                        console.log(str);
+                    });
+                })
+
+                $("#test").click(function () {
+                    $("#myModal").modal('hide');
+                    $("#product_name").modal('show');
+                });
+
+
+                $("#tests").click(function () {
+                    $("#myModal").modal('hide');
+                    $("#product_user").modal('show');
+                });
+
+
+                $("#product_ok").on('click','.product',function () {
+                    $("#client_company").val($(this).children().next().html());
+                    $("#client_company").attr('client_id',$(this).children().html());
+                    $("#product_name").modal('hide');
+                    $("#myModal").modal('show');
+                });
+
+                $("#staff_ok").on('click','.staff',function () {
+
+                    $("#user").val($(this).children().next().next().html());
+                    $("#user").attr('staff_id',$(this).children().html());
+                    $("#product_user").modal('hide');
+                    $("#myModal").modal('show');
+                });
+
+
+
+                //edit
+                $("#testss").click(function () {
+                    $("#myModals").modal('hide');
+                    $("#product_names").modal('show');
+                });
+
+
+                $("#testsss").click(function () {
+                    $("#myModals").modal('hide');
+                    $("#product_users").modal('show');
+                });
+
+                $("#product_oks").on('click','.product',function () {
+                    $("#client_companys").val($(this).children().next().html());
+                    $("#client_companys").attr('client_id',$(this).children().html());
+
+                    $("#product_names").modal('hide');
+                    $("#myModals").modal('show');
+                });
+
+
+
+                $("#staff_oks").on('click','.staff',function () {
+                    // alert($(this).children().next().html())
+                    $("#users").val($(this).children().next().next().html());
+                    $("#users").attr('staff_id',$(this).children().html());
+                    $("#product_users").modal('hide');
+                    $("#myModals").modal('show');
+                });
+
+                //add
+
+                $('#submit').click(function () {
+                    $.ajax({
+                        type:'POST',
+                        url:'documentary',
+                        data:{
+                            title:$("#title").val(),
+                            client_id:$("#client_company").attr('client_id'),
+                            client_company:$("#client_company").val(),
+                            staff_id:$("#user").attr('staff_id'),
+                            staff_name:$("#user").val(),
+                            way:$("#way option:selected").val(),
+                            evolve:$("#evolve option:selected").val(),
+                            remark:$("#remark").val(),
+
+
+                        },
+                        beforeSend:function(){
+                            $('#ok').modal('show');
+                            $('#myModal').modal('hide');
+                        },
+                        success:function (r,s,x) {
+                            if (r['last_add_id'] > 0) {
+                                $('#ok-img').attr('src', '/__IMG__/jump_success.png');
+                                $('#ok-text').html('数据添加成功');
+
+
+                                $('#ok-create').prepend(' <tr class="gradeA odd '+ r['last_add_id'] +' select-remove">\n' +
+                                    '                        <td class="sorting_1">\n' +
+                                    '                            <div class="text-center">\n' +
+                                    '                                <input type="checkbox" name="check[]"  yang="yang"  value="'+ r['last_add_id'] +'" >\n' +
+                                    '                            </div>\n' +
+                                    '                        </td>\n' +
+                                    '                        <td class="text-center">'+ r['sn'] +'</td>\n' +
+                                    '                        <td class="text-center">'+ $("#title").val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $("#client_company").val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $("#user").val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $("#way option:selected").val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ $("#evolve option:selected").val() +'</td>\n' +
+                                    '                        <td class="text-center">{:session("name")}</td>\n' +
+                                    '                        <td class="text-center">'+ $("#remark").val() +'</td>\n' +
+                                    '                        <td class="text-center">'+ r['create_time'] +'</td>\n' +
+                                    '\n' +
+                                    '                    </tr>');
+
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src', '/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                }, 1000)
+                            }else {
+                                $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                $('#ok-text').html(response['msg']);
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1000)
+                            }
+
+                        }
+
+                    });
+                });
+
+
+
+                $("#delete").click(function(){
+                    if ($("[yang=yang]:checkbox:checked").length>0){
+                        var delete_id=[];
+                        var i=0;
+                        $.each($("[yang=yang]:checkbox:checked"),function(){
+                            if(this.checked){
+                                delete_id[i]=$(this).val();
+                                i++;
+                            }
+                        });
+                        var num=JSON.stringify((delete_id));
+                        $.ajax({
+                            type:'DELETE',
+                            url:'documentary/delete',
+                            data:{
+                                id:num,
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+                                if(response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据删除成功');
+                                    $("[yang=yang]:checkbox:checked").parent().parent().parent().hide();
+                                    setTimeout(function () {
+                                        $("[yang=yang]:checkbox:checked").attr('checked',false);
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+
+                            }
+                        })
+                    }else {
+                        alert('至少有一个选中');
+                    }
+                });
+
+
+
+                //edit
+                $('#edit').click(function(){
+
+                    if (!$("[yang=yang]:checkbox:checked").length>0 ||$("[yang=yang]:checkbox:checked").length>1 ){
+                        alert('至少有一个被选中，且只能选中一个');
+                    }else{
+                        var ids=$("[yang=yang]:checkbox:checked").val();
+                        $.ajax({
+                            type:'GET',
+                            url:'documentary/'+ids+'/edit',
+                            data:{
+                                id:ids,
+                            },
+                            beforeSend:function(){
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr) {
+
+                                $('#titles').val(response['title']);
+                              //  $("#ways").val(response['way']);
+                                $("#remarks").val(response['remark']);
+                                $("#client_companys").val(response['client_company']);
+                                $("#client_companys").attr('client_id',response['client_id']);
+                                $("#users").val(response['staff_name']);
+                                $("#users").attr('staff_id',response['staff_id']);
+
+
+                                for (var j=1; j< $('#ways option').length; j++){
+                                    if ( $("#ways option:eq(' "+ j +" ')").val()==response['way']){    //学历
+                                        $("#ways option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+
+                                for (var j=1; j< $('#evolves option').length; j++){
+                                    if ( $("#evolves option:eq(' "+ j +" ')").val()==response['evolve']){    //学历
+                                        $("#evolves option:eq(' "+ j +" ')").attr('selected','selected');
+
+                                    }
+                                }
+
+
+                                $('#myModals').modal('show');
+
+                                setTimeout(function () {
+                                    $('#ok').modal('hide');
+                                    $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                    $('#ok-text').html('数据交互中..,');
+                                },1)
+                            }
+                        })
+
+                    }
+
+                    //update
+
+                    $('#submits').click(function(){
+                        $.ajax({
+                            type:'PUT',
+                            url:'documentary/update',
+                            data:{
+                                id:ids,
+                                title:$("#titles").val(),
+                                client_id:$("#client_companys").attr('client_id'),
+                                client_company:$("#client_companys").val(),
+                                staff_id:$("#users").attr('staff_id'),
+                                staff_name:$("#users").val(),
+                                way:$("#ways option:selected").val(),
+                                evolve:$("#evolves option:selected").val(),
+                                remark:$("#remarks").val(),
+
+
+                            },
+                            beforeSend:function(){
+                                $('#myModals').modal('hide');
+                                $('#ok').modal('show');
+                            },
+                            success:function (response,stutas,xhr){
+                                if (response==true){
+                                    $('#ok-img').attr('src','/__IMG__/jump_success.png');
+                                    $('#ok-text').html('数据修改成功');
+
+                                    alert($("#ways option:selected").val())
+
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().text($('#titles').val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().text($("#ways option:selected").val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().text($("#evolves option:selected").val());
+                                    $("[yang=yang]:checkbox:checked").parent().parent().next().next().next().next().next().next().next().next().text($("#remarks").val());
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }else {
+                                    $('#ok-img').attr('src','/__IMG__/jump_error.png');
+                                    $('#ok-text').html(response['msg']);
+                                    setTimeout(function () {
+                                        $('#ok').modal('hide');
+                                        $('#ok-img').attr('src','/__IMG__/loading.gif');
+                                        $('#ok-text').html('数据交互中..,');
+                                    },1000)
+                                }
+                            },
+
+
+                        })
+                    });
+
+
+                });
+
+
+
+            </script>
+
+            {include file='layout/footer'}
